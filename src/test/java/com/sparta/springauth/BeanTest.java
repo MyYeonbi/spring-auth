@@ -12,13 +12,12 @@ public class BeanTest {
   @Autowired
   Food food;
 
-  @Autowired
-  Food chicken;
+
 
   @Test
   @DisplayName("테스트")
   void test1() {
-    
+
   }
 
 }
