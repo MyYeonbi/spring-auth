@@ -33,6 +33,17 @@ public class AuthController {
     return "getCookie : " + value;
   }
 
+  @GetMapping("/create-session")
+  public String createSession(HttpServletRequest req) {
+    // 세션이 존재할 경우 세션 반환, 없을 경우 새로운 세션을 생성한 후 반환
+    HttpSession session = req.getSession(true);
+
+    // 세션에 저장될 정보 Name - Value를 추가합니다.
+    session.setAttribute(AUTH_TOKEN_HEADER, "Yeon Auth");
+
+    return "createSession";
+  }
+
   @GetMapping("/get-session")
   public String getSession(HttpServletRequest req) {
     // 세션이 존재할 경우 세션 반환, 없을 경우 null 반환
