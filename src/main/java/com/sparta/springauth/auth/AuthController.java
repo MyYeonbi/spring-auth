@@ -2,7 +2,9 @@ package com.sparta.springauth.auth;
 
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -29,6 +31,18 @@ public class AuthController {
     System.out.println("value: " + value);
 
     return "getCookie : " + value;
+  }
+
+  @GetMapping("/get-session")
+  public String getSession(HttpServletRequest req) {
+    // 세션이 존재할 경우 세션 반환, 없을 경우 null 반환
+    HttpSession session = req.getSession(false);
+
+    // 세션에서 AUTH_TOKEN_HEADER 이름으로 저장된 값을 꺼냅니다.
+    String value = (String) session.getAttribute(AUTH_TOKEN_HEADER); // 가져온 세션에 저장된 Value를 Name을 사용하여 가져옵니다.
+    System.out.println("value: " + value);
+
+    return "getSession : " + value;
   }
 
   public static void addCookie(String cookieValue, HttpServletResponse res) {
