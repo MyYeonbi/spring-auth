@@ -24,7 +24,8 @@ public class AuthController {
   }
 
   @GetMapping("/get-cookie")
-  public String getCookie(@CookieValue(AUTHORIZATON_HEADER) String value) {
+  public String getCookie(@CookieValue(AUTH_TOKEN_HEADER
+  ) String value) {
     System.out.println("value: " + value);
 
     return "getCookie : " + value;
@@ -34,7 +35,8 @@ public class AuthController {
     try {
       cookieValue = URLEncoder.encode(cookieValue, "utf-8").replaceAll("\\+", "%20");
 
-      Cookie cookie = new Cookie(AUTHORIZATION_HEADER, cookieValue);
+      Cookie cookie = new Cookie(AUTH_TOKEN_HEADER
+          , cookieValue);
       cookie.setPath("/");
       cookie.setMaxAge(30 * 60);
 
