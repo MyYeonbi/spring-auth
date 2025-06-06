@@ -33,7 +33,7 @@ public class AuthController {
 
   public static void addCookie(String cookieValue, HttpServletResponse res) {
     try {
-      cookieValue = URLEncoder.encode(cookieValue, "utf-8").replaceAll("\\+", "%20");
+      cookieValue = URLEncoder.encode(cookieValue, "utf-8").replaceAll("\\+", "%20"); // Cookie Value에서는 공백이 았으면 안되서 인코딩이 필요함
 
       Cookie cookie = new Cookie(AUTH_TOKEN_HEADER
           , cookieValue);
